@@ -9,15 +9,7 @@ class MyApp extends StatelessWidget {
    // final WordWrap = new WordPair.random();
     return new MaterialApp(
       title: 'Welcome to Flutter Akhielsh',
-      home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Welcome to Flutter from Appbar title'),
-        ),
-        body: new Center(
-         // child: new Text(WordWrap.asPascalCase),
-         child: new RandomWords(),
-        ),
-      ),
+      home: new RandomWords(),
     );
   }
 }
@@ -29,7 +21,18 @@ class RandomWords extends StatefulWidget {
    }
    
    class RandomWordsState extends State<RandomWords> {
-     
+        
+          @override
+           Widget build(BuildContext context) {
+             return new Scaffold(
+            appBar: new AppBar(
+                title: new Text('Startup Name genrator'),
+            ),
+            body: _buildSuggesitons(),
+          );
+           }
+
+
      final _suggesitions = <WordPair>[];
      final _biggerFont = const TextStyle(fontSize: 18.0);
            
@@ -46,7 +49,19 @@ class RandomWords extends StatefulWidget {
                   {
                     _suggesitions.addAll(generateWordPairs().take(10));
                   }
-               },
-             )
-           }
-}
+                  return _buildRow(-_suggesitions[index]);
+                                 },
+                               );
+                             }
+                  
+                  
+                                 Widget _buildRow(WordPair pair) {
+                                     return new ListTile(
+                                      title: new Text(
+                                      pair.asPascalCase,
+                                      style: _biggerFont,
+                                        ),
+                                       );
+                                 }
+                                      
+   }
