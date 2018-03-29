@@ -33,4 +33,20 @@ class RandomWords extends StatefulWidget {
      final _suggesitions = <WordPair>[];
      final _biggerFont = const TextStyle(fontSize: 18.0);
            
+           Widget _buildSuggesitons() {
+             return new ListView.builder(
+               padding: const EdgeInsets.all(16.0),
+
+               itemBuilder: (context, i) {
+                  if(i.isOdd) return new Divider();
+
+                  final index = i ~/ 2 ;
+
+                  if(index >= _suggesitions.length)
+                  {
+                    _suggesitions.addAll(generateWordPairs().take(10));
+                  }
+               },
+             )
+           }
 }
