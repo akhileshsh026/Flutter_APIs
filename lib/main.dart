@@ -8,20 +8,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
    // final WordWrap = new WordPair.random();
     return new MaterialApp(
-      title: 'Welcome to Flutter Akhielsh',
+      title: 'Startup Name Gen',
       home: new RandomWords(),
     );
   }
 }
 
-class RandomWords extends StatefulWidget {
+class RandomWords extends StatefulWidget 
+{
   @override
-   createState() => new RandomWordsState();
-      
-   }
+   createState() => new RandomWordsState();   
+}
    
-   class RandomWordsState extends State<RandomWords> {
-        
+class RandomWordsState extends State<RandomWords> {
+     final _suggesitions = <WordPair>[];
+     final _biggerFont = const TextStyle(fontSize: 18.0);
+
           @override
            Widget build(BuildContext context) {
              return new Scaffold(
@@ -30,13 +32,10 @@ class RandomWords extends StatefulWidget {
             ),
             body: _buildSuggesitons(),
           );
-           }
-
-
-     final _suggesitions = <WordPair>[];
-     final _biggerFont = const TextStyle(fontSize: 18.0);
+          }
            
-           Widget _buildSuggesitons() {
+           Widget _buildSuggesitons() 
+           {
              return new ListView.builder(
                padding: const EdgeInsets.all(16.0),
 
@@ -52,10 +51,10 @@ class RandomWords extends StatefulWidget {
                   return _buildRow(-_suggesitions[index]);
                                  },
                                );
-                             }
+            }
                   
                   
-                                 Widget _buildRow(WordPair pair) {
+           Widget _buildRow(WordPair pair) {
                                      return new ListTile(
                                       title: new Text(
                                       pair.asPascalCase,
